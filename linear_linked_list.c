@@ -287,7 +287,224 @@ int main()
 }
 
 
+/**** Latest ***/
 
+#include <stdio.h>
+#include <stdlib.h>
+
+
+typedef struct node 
+{
+	int data;
+	struct node *next;
+}NODE;
+
+NODE *firstNode = NULL, *initialNode = NULL;
+
+NODE *createMemoryForLinkedList(); 
+void diplayLinkedList(NODE *dispNode);
+void insertNodeAtStart();
+void insertNodeAtEnd();
+void deleteNodeAtStart();
+void deleteNodeAtEnd();
+void deleteNodeAtPos();
+void countNode();
+void insertInSortedList();
+void checkListIsSorted();
+void reverseList();
+
+
+int main (int argc, char **argv)
+{
+	int option = 0;
+	while (1)
+	{
+		printf("\n");
+		printf("Enter 0: To quit\n");
+		printf("Enter 1: Display\n");
+		printf("Enter 2: Insert data to start of linked list\n");
+		printf("Enter 3: Insert data to end of linked list\n");
+		printf("Enter 4: Delete data from front of linked list\n");
+		printf("Enter 5: Delete data from end of linked list\n");
+		printf("Enter 6: Reverse linked list\n");
+		printf("Enter 7: Insert data at entered position of linked list\n");
+		printf("Enter 8: Delete data at entered position of linked list\n");
+		printf("Enter 9: Count number of nodes\n");
+		printf("Enter 10: Insert element in a sorted linked list \n");
+		printf("Enter 11: Delete Node at a given position \n");
+		printf("Enter 12: Check if linked list is sorted \n");
+
+		scanf("%d", &option);
+
+		switch (option)
+		{
+			case 0:
+				exit(0);
+				break;
+			case 1:
+				diplayLinkedList(firstNode);
+				break;
+			case 2:
+				insertNodeAtStart();
+				break;
+			case 3:
+				insertNodeAtEnd();
+				break;
+			case 4:
+				deleteNodeAtStart();
+				break;
+			case 5:
+				deleteNodeAtEnd();
+				break;
+			case 6:
+				reverseList();
+				break;
+			case 7:
+				break;
+			case 8:
+				break;
+			case 9:
+				countNode();
+				break;
+			case 10:
+				insertInSortedList();
+				break;
+			case 11:
+				deleteNodeAtPos();
+				break;
+			case 12:
+				checkListIsSorted();
+				break;
+
+		}
+	}
+}
+
+NODE *createMemoryForLinkedList() 
+{
+	NODE *rNode;
+	rNode = malloc (sizeof(NODE));
+	if (NULL == rNode)
+	{
+		perror("Error:");
+		exit(-1);
+	}
+	return rNode;
+}
+
+void diplayLinkedList(NODE *dispNode)
+{
+	if (dispNode == NULL)
+	{
+		printf("There are no elements in List\n");
+		exit(-1);
+	}
+	while (dispNode != NULL)
+	{
+		printf("%d \t", dispNode->data);
+		dispNode = dispNode->next;
+	}
+}
+
+void insertNodeAtStart()
+{
+#if 0
+	int num = 0;
+	NODE *insStartNode;
+	printf("Enter number to insert at start:\n");
+	scanf("%d", &num);
+
+	insStartNode = createMemoryForLinkedList();
+	if (firstNode == NULL)
+	{
+		insStartNode->data = num;
+		insStartNode->next = NULL;
+		initialNode = insStartNode;
+	}
+	else
+	{
+		insStartNode->data = num;
+		insStartNode->next = firstNode;
+	}
+	firstNode = insStartNode;
+#endif
+	int num[] = {5, 7, 8, 9, 10, 30 , 46, 47};
+	NODE *insStartNode;
+	for(int  i = 0; i < sizeof(num)/sizeof(int); i++)
+	{
+		insStartNode = createMemoryForLinkedList();
+		if (firstNode == NULL)
+		{
+			insStartNode->data = num[i];
+			insStartNode->next = NULL;
+			initialNode = insStartNode;
+		}
+		else
+		{
+			insStartNode->data = num[i];
+			insStartNode->next = firstNode;
+		}
+		firstNode = insStartNode;
+	}
+}
+
+void insertNodeAtEnd()
+{
+	int num = 0;
+	NODE *insEndNode;
+	printf("Enter number to insert at End:\n");
+	scanf("%d", &num);
+	insEndNode = createMemoryForLinkedList();
+
+	if (firstNode == NULL)
+	{
+		insEndNode->data = num;
+		insEndNode->next = NULL;
+	}
+	else
+	{
+		insEndNode->data = num;
+		insEndNode->next = NULL;
+		initialNode->next = insEndNode;
+		initialNode = insEndNode;
+	}
+}
+void deleteNodeAtStart()
+{
+	NODE *delStartNode;
+	if (firstNode == NULL)
+	{
+		printf("There are no elements in List\n");
+		exit(-1);
+	}
+	delStartNode = firstNode;
+	firstNode = firstNode->next;
+	free(delStartNode);
+}
+
+void deleteNodeAtEnd()
+{
+	NODE *delEndNode;
+	if (firstNode == NULL)
+	{
+		printf("There are no elements in List\n");
+		exit(-1);
+	}
+	delEndNode = firstNode;
+	while (delEndNode->next == initialNode)
+	{
+		delEndNode = delEndNode->next;
+	}
+	free(initialNode);
+	initialNode = delEndNode;
+	initialNode->next = NULL;
+}
+void countNode()
+{
+
+
+
+}
 
 
 
